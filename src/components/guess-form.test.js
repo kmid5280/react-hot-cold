@@ -8,11 +8,16 @@ describe('<GuessForm />', () => {
         const wrapper = shallow(<GuessForm />)
         //expect(wrapper.hasClass('text')).toEqual(true)
     })
-    /*it('Has a form with text input and button', () => {
+    it('Has a form with text input and button', () => {
         const wrapper = shallow(<GuessForm />)
-        expect(wrapper.hasClass('text')).toEqual(true)
-        expect(wrapper.hasClass('button')).toEqual(true)
-    })*/
+        expect(wrapper.find('input').hasClass('text')).toEqual(true)
+        expect(wrapper.find('button').hasClass('button')).toEqual(true)
+    })
+    it('Submits guess upon submit', () => {
+        const input = 10;
+        wrapper.simulate('submit')
+        expect(input).toEqual('10')
+    })
     it('Should reset input when form is submitted', () => {
         const wrapper = mount(<GuessForm />)
         const input = wrapper.find('input[type="number"]')
