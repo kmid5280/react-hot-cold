@@ -12,7 +12,7 @@ const initialState = {
 export default (state = initialState, action) => {
     if (action.type === MAKE_GUESS) {
         let feedback, guess;
-        guess = parseInt(guess, 10);
+        guess = parseInt(action.guess, 10);
         if (isNaN(guess)) {
             feedback = 'Please enter a valid number';
             return Object.assign({}, state, {
@@ -21,7 +21,7 @@ export default (state = initialState, action) => {
             })
         }
                     
-        const difference = Math.abs(guess - this.state.correctAnswer);
+        const difference = Math.abs(guess - state.correctAnswer);
     
         if (difference >= 50) {
           feedback = 'You\'re Ice Cold...';
@@ -37,7 +37,7 @@ export default (state = initialState, action) => {
     
         return Object.assign({}, state, {
           feedback,
-          guesses: [...this.state.guesses, guess]
+          guesses: [...state.guesses, guess]
         });
         
     }
@@ -56,6 +56,10 @@ export default (state = initialState, action) => {
                 : 'It was'}: ${guesses.reverse().join(', ')}`
         }
         return Object.assign({}, state, {auralStatus})
+    }
+
+    if (action.type === RESTART_GAME) {
+        state = initialState
     }
     return state;
     

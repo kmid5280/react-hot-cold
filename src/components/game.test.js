@@ -17,13 +17,16 @@ describe('<Game />', () => {
     })
     
     it('Can make guesses', () => {
-        const wrapper = mount(<Game />);
+        const action = makeGuess(guess)
+        expect(action.type).toEqual(MAKE_GUESS)
+        
+        /*const wrapper = mount(<Game />);
         wrapper.setState({
             correctAnswer: 100
         })
         wrapper.instance().makeGuess(25)
         expect(wrapper.state('guesses')).toEqual([25]);
-        expect(wrapper.state('feedback')).toEqual('You\'re Ice Cold...')
+        expect(wrapper.state('feedback')).toEqual('You\'re Ice Cold...')*/
     })
 
     it('Can add to guess list', () => {
